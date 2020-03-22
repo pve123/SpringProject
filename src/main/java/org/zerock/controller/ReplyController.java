@@ -24,6 +24,8 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/replies/")
 @RestController
 @Log4j
+//produces 반환
+// consumes 입력
 public class ReplyController {
 
 	@Setter(onMethod_ = @Autowired)
@@ -46,7 +48,7 @@ public class ReplyController {
 		log.info("get Reply List()...........");
 
 		return new ResponseEntity<>(service.getList(new Criteria(page, 10), bno), HttpStatus.OK);
-	} // 댓글목록조회 페이징
+	} // 댓글목록페이징
 
 	@DeleteMapping(value = "/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
@@ -70,6 +72,7 @@ public class ReplyController {
 		log.info("modify REPLY .......");
 
 		vo.setBno(rno);
+		log.info("modify : " + vo);
 
 		return service.modify(vo) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

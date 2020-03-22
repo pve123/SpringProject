@@ -17,7 +17,7 @@
 		update tbl_reply set reply=#{reply}, updateDate=SYSDATE where rno = #{rno}
 	</update>
 	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
-		select * from tbl_reply where bno = #{bno} order by rno asc
+		select * from tbl_reply where bno = #{bno} order by rno desc
 	</select>
 
 
