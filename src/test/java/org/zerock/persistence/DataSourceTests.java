@@ -29,7 +29,7 @@ public class DataSourceTests {
 	@Setter(onMethod_ = @Autowired)
 	private SqlSessionFactory sqlsessionFactory;
 
-	@Test
+//	@Test
 //	public void testConnection() {
 //		
 //		try(Connection con = datasource.getConnection()) {
@@ -39,6 +39,7 @@ public class DataSourceTests {
 //			fail(e.getMessage());
 //		}
 //	} //datasource를 이용한 커낵션풀
+	@Test
 	public void testMyBatis() {
 		try (SqlSession session = sqlsessionFactory.openSession(); 
 				Connection con = session.getConnection()) {

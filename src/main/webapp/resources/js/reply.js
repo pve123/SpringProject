@@ -13,7 +13,7 @@ var replyService = (function(){
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
-				if (callback) {
+				if (callback) {				
 					callback(result);
 				}
 			},
@@ -30,9 +30,9 @@ var replyService = (function(){
 		var bno = param.bno;
 		var page = param.page || 1;
 		
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json", function(data){
+		$.getJSON("/replies/pages/" + page + "/" + bno + ".json", function(data){
 			if(callback){
-				callback(data);
+				callback(data.replyCnt, data.list);
 			}
 		}).fail(function(xhr,status,err){
 			if(error){
@@ -42,7 +42,7 @@ var replyService = (function(){
 	}//end function 목록
 	
 	function remove(rno , callback , error){
-			
+
 		$.ajax({
 			
 			type : 'DELETE',
@@ -61,9 +61,10 @@ var replyService = (function(){
 	} //End function 삭제
 	
 	function update(reply, callback ,error){
+
 		$.ajax({
-			type : 'put',
-			url : '/replies/' +reply.rno,
+			type : 'PUT',
+			url : '/replies/'+reply.rno,
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
@@ -82,8 +83,8 @@ var replyService = (function(){
 	function get(rno, callback, error){
 		
 		$.getJSON("/replies/" + rno + ".json", function(result){
-			if(callback){
-				callback(result);
+			if(callback){			
+				callback(result);			
 			}
 		}).fail(function(xhr,status,err){
 			if(error){
@@ -108,6 +109,9 @@ var replyService = (function(){
 		
 	};//시간
 	
+
+	
+
 
 	
 	return { add : add, getList : getList, remove : remove, update : update, get : get, displayTime : displayTime};

@@ -30,4 +30,9 @@ public class Mappertests {
 
 
 
+	@Test
+	public void test()
+	{
+		mapper.getListWithPaging(new Criteria(3,10), 6).forEach(list -> log.info(list));
+	}
 }

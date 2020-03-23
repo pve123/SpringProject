@@ -16,12 +16,6 @@
 	<update id="update">
 		update tbl_reply set reply=#{reply}, updateDate=SYSDATE where rno = #{rno}
 	</update>
-	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
-		select * from tbl_reply where bno = #{bno} order by rno desc
-	</select>
-
-
-
 	<insert id="insertSelectKey">
 		<selectKey keyProperty="rno" order="BEFORE" resultType="int">
 			select seq_reply.nextval from dual
@@ -29,8 +23,21 @@
 			insert into tbl_reply(rno,bno,reply,replyer)
 			values(#{rno}, #{bno},#{reply},#{replyer})
 	</insert>
-
-
+	<select id="getListWithPaging"
+		resultType="org.zerock.domain.ReplyVO">
+		<![CDATA[
+		select rno,bno,reply,replyer,replydate,updatedate
+		from(
+		select /* +INDEX(tbl_reply pk_reply) */ rownum rn,rno,bno,reply,replyer,replydate,updatedate
+		from tbl_reply
+		where bno = #{bno}
+		and rownum <=#{cri.pageNum} * #{cri.amount}
+		)where rn > (#{cri.pageNum}-1) * #{cri.amount}
+	]]>
+	</select>	
+	<select id="getCountByBno" resultType="int">
+		select count(*) from tbl_reply where bno=#{bno}
+	</select>
 
 
 

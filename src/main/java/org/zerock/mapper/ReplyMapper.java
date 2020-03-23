@@ -13,4 +13,6 @@ public interface ReplyMapper {
 	public int delete(int rno); //댓글삭제
 	public int update(ReplyVO vo); //댓글수정
 	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri,@Param("bno")int bno); //댓글목록
+	public int getCountByBno(int bno);//해당 게시물 댓글개수
+	
 }
