@@ -24,6 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	public void register(BoardVO board) {
 
 		log.info("추가 하실수 있어요..............");
+		
 		mapper.insertSelectKey(board);
 
 	}

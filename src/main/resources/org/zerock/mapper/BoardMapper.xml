@@ -27,10 +27,10 @@
 	<select id="getListWithPaging"
 		resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
-		select bno, title, content,writer, regdate,updatedate 
+		select bno, title, content,writer, regdate,updatedate ,replycnt
 		from(
 		select /* +INDEX_DESC(tbl_board SYS_C007415) */ rownum rn,bno, title,
-		content,writer, regdate,updatedate
+		content,writer, regdate,updatedate,replycnt
 		from tbl_board 
 		where 
 		]]>
@@ -77,6 +77,8 @@
 	<select id="boardList" resultType="org.zerock.domain.BoardVO">
 	select * from tbl_board order by bno
 	</select>
-
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt = replycnt + #{amount} where bno =#{bno}
+	</update>
 
 </mapper>

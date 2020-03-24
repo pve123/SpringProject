@@ -2,7 +2,7 @@ package org.zerock.mapper;
 
 import java.util.List;
 
-
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -17,5 +17,5 @@ public interface BoardMapper {
 	public List<BoardVO> getListWithPaging(Criteria cri); //목록 페이징
 	public int getTotalCount(Criteria cri); //총 게시물 개수
 	public List<BoardVO> boardList(); //엑셀목록
-
+	public void updateReplyCnt(@Param("bno") int bno, @Param("amount") int amount); //댓글수
 }

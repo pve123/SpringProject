@@ -6,13 +6,13 @@
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Board Read Page</h1>
+		<h1 class="page-header">게시글 조회 페이지</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">Board Read</div>
+			<div class="panel-heading">조회</div>
 			<div class="panel-body">
 
 				<div class="form-group">
@@ -211,7 +211,9 @@ $(function(){
 	var modalRemoveBtn = $('#modalRemoveBtn');
 	var modalRegisterBtn = $('#modalRegisterBtn');
 	var modalCloseBtn = $('#modalCloseBtn');
+	 
 	 $("#addReplyBtn").click(function(){
+		modalInputReplyer.removeAttr("readonly");
 		modal.modal({keyboard: false,backdrop: 'static'});
 		modal.find("input").val('');
 		modalInputReplydate.closest("div").hide();
@@ -250,12 +252,13 @@ $(function(){
 	}); //댓글클릭처리조회 (삭제, 수정 하기위해서)
 
 	modalModBtn.click(function() {
-			var reply = {rno : rnoValue, reply : modalInputReply.val()};			
-			replyService.update(reply,function(result){				
+			
+			var reply = {rno : rnoValue, reply : modalInputReply.val(), bno : parseInt(bnoValue)};	
+			replyService.update(reply,function(result){
 				alert(result);
 				modal.modal("hide");
 				showList(pageNum);
-			})
+ 			})
 		}); //댓글 수정처리
 		
 	modalRemoveBtn.click(function(){

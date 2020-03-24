@@ -40,7 +40,7 @@
 					<c:forEach items="${list }" var="board">
 						<tr>
 							<td>${board.bno }</td>
-							<td><a class="move" href="${board.bno }">${board.title }</a></td>
+							<td><a class="move" href="${board.bno }">${board.title }</a><b style="color :red">[ ${board.replyCnt } ]</b></td>
 							<td>${board.writer }</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
 									value="${board.regdate }" /></td>
@@ -112,8 +112,6 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -126,6 +124,13 @@
 	</div>
 	<!-- /.panel -->
 </div>
+
+
+
+
+
+
+
 <form id="actionForm" action="/board/list" method="get">
 	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
@@ -199,3 +204,4 @@
 	});
 </script>
 <%@include file="footer.jsp"%>
+

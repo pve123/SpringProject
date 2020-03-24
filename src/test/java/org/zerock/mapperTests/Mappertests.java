@@ -9,11 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.config.RootConfig;
 
-import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyVO;
-
-import org.zerock.mapper.ReplyMapper;
-
+import org.zerock.service.SampleService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -24,15 +20,13 @@ import lombok.extern.log4j.Log4j;
 public class Mappertests {
 
 	@Setter(onMethod_ = @Autowired)
-	private ReplyMapper mapper;
-	@Setter(onMethod_ = @Autowired)
-	private ReplyVO vo;
-
-
+	private SampleService service;
 
 	@Test
-	public void test()
+	public void test() throws Exception
 	{
-		mapper.getListWithPaging(new Criteria(3,10), 6).forEach(list -> log.info(list));
+		log.info("test : " +service);
+		log.info("test : " +service.getClass().getName());
+		log.info(service.doAdd("123", "456"));
 	}
 }

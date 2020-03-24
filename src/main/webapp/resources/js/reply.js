@@ -95,7 +95,6 @@ var replyService = (function(){
 	
 	function displayTime(timevalue){
 		var today = new Date();
-		var gap = today.getTime() - timevalue;
 		var dateObj = new Date(timevalue);
 		var str="";
 

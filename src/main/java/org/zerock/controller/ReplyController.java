@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,13 @@ public class ReplyController {
 	@Setter(onMethod_ = @Autowired)
 	private ReplyService service;
 
-	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
+	@PostMapping(value = "/new", consumes = "application/json", produces = {"application/text; charset=utf8"})
+	public ResponseEntity<String> create(@RequestBody ReplyVO vo) throws UnsupportedEncodingException {
 		log.info("ReplyVO : " + vo);
 
 		int insertCount = service.register(vo);
 		log.info("Reply INSERT COUNT : " + insertCount);
-
-		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+		return insertCount == 1 ? new ResponseEntity<>("댓글 등록 성공", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	} // 댓글등록
 
@@ -51,11 +51,11 @@ public class ReplyController {
 		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	} // 댓글목록페이징
 
-	@DeleteMapping(value = "/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
+	@DeleteMapping(value = "/{rno}", produces = {"application/text; charset=utf8"})
+	public ResponseEntity<String> remove(@PathVariable("rno") int rno) throws UnsupportedEncodingException {
 		log.info("delete Reply........");
 		int result = service.remove(rno);
-		return result == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
+		return result == 1 ? new ResponseEntity<String>("댓글 삭제 성공", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}// 댓글삭제
 
@@ -67,15 +67,15 @@ public class ReplyController {
 	} // 댓글조회
 
 	@RequestMapping(method = { RequestMethod.PUT,
-			RequestMethod.PATCH }, value = "/{rno}", consumes = "application/json", produces = {
-					MediaType.APPLICATION_JSON_UTF8_VALUE })
+			RequestMethod.PATCH }, value = "/{rno}", consumes = "application/json", 
+			produces = {"application/text; charset=utf8"})
 	public ResponseEntity<String> modify(@RequestBody ReplyVO vo, @PathVariable("rno") int rno) {
 		log.info("modify REPLY .......");
 
 		vo.setBno(rno);
 		log.info("modify : " + vo);
 
-		return service.modify(vo) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
+		return service.modify(vo) == 1 ? new ResponseEntity<String>("댓글 수정 성공", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}// 댓글 수정

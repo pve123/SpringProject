@@ -46,6 +46,7 @@ public class BoardController {
 		log.info(" >>> 리스트페이지  <<<\n");
 		log.info("페이지번호 : " + cri.getPageNum() + ", 게시글 수 : " + cri.getAmount());
 		int total = service.getTotal(cri);
+		log.info("총 게시물 개수 : " + total);
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	} // 리스트 또는 수정페이지

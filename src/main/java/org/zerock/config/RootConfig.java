@@ -1,18 +1,25 @@
 package org.zerock.config;
 
+import javax.activation.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@ComponentScan(basePackages = { "org.zerock.service", "org.zerock.domain" })
+@ComponentScan(basePackages = { "org.zerock.service", "org.zerock.domain","org.zerock.aop" })
 @MapperScan(basePackages = { "org.zerock.mapper" })
+@EnableAspectJAutoProxy //AOP관련설정
+@EnableTransactionManagement //트랜잭션
 public class RootConfig {
 
 	@Bean
@@ -35,5 +42,10 @@ public class RootConfig {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource());
 		return sqlSessionFactory.getObject();
-	}
+	} //datasource를 이용한 데이터베이스 연결
+	
+	@Bean
+	public DataSourceTransactionManager txManager() {
+		return new DataSourceTransactionManager(dataSource());
+	} //트랜잭션
 }

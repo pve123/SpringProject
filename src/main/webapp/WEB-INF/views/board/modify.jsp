@@ -6,13 +6,13 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Board Modify Page</h1>
+		<h1 class="page-header">게시글 수정 페이지</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">Board Register</div>
+			<div class="panel-heading">게시글 수정</div>
 			<div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
 
