@@ -1,6 +1,6 @@
 package org.zerock.config;
 
-import javax.activation.DataSource;
+
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

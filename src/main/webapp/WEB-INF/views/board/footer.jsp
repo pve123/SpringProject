@@ -3,9 +3,7 @@
 <!-- /#page-wrapper -->
 
 </div>
-				<audio id="audio" autoplay>
-					<source src="../resources/music.mp3" type="audio/mp3">
-				</audio>
+
 <!-- /#wrapper -->
 
 <!-- Core Scripts - Include with every page -->
