@@ -1,7 +1,22 @@
-개인미니프로젝트  ( 스프링 )
-===================
-#### -   게시판 구현 ( 게시판 목록 페이징, 게시글 추가, 게시글 조회, 게시글 수정, 게시글 삭제)
-#### -   댓글 구현 ( 댓글 페이징, 댓글 추가, 댓글 조회, 댓글 수정, 댓글 삭제) REST API
-#### -   검색 구현 (제목, 작성자, 내용 별로 검색가능)
-#### -   댓글 개수 ( 해당 게시글의 댓글수를 보여줌 ) 트랜잭션사용
-#### -   게시판 엑셀로다운로드가능 ( 게시판.xls ) poi라이브러리 사용
+# 스프링미니프로젝트
+
+## Features
+
+- [x] Reply CRUD
+- [x] Board CRUD
+- [x] Search 
+- [x] Paging
+- [x] Number of comments
+- [x] Board Excel Download
+
+## 설정
+
+####  - JAVA Configuration
+
+## 사용한 툴 혹은 사이트
+
+#### - Development tool : Eclipse 
+#### - DB tool : sqldeveloper
+
+
+
