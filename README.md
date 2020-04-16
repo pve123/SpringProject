@@ -1,4 +1,4 @@
-# 스프링미니프로젝트
+# SpringProject ( 개인 )
 
 ## Features
 
